@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>TWENZER. MEDIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cairo:wght@300;400;600;700&family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --olive-deep:#2a3020;
+  --olive-dark:#3d4a28;
+  --olive-mid:#5c6b35;
+  --olive-light:#8a9f55;
+  --olive-pale:#c8d4a0;
+  --burn-dark:#c45c22;
+  --burn:#d97035;
+  --burn-light:#e8905c;
+  --cream:#f5f2ea;
+  --black:#111209;
+  --display:"Bebas Neue", sans-serif;
+  --serif:"Playfair Display", serif;
+  --ar:"Cairo", sans-serif;
+  --en:"DM Sans", sans-serif;
+}
+
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--black);
+  color:var(--cream);
+  font-family:var(--ar);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.5;
+  overflow-x:hidden;
+  max-width:100vw;
+}
+::selection { background:var(--burn); color:var(--cream); }
+
+.section {
+  padding:60px 24px;
+  position:relative;
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.section.visible {
+  opacity:1;
+  transform:translateY(0);
+}
+
+.bg-black { background:var(--black); color:var(--cream); }
+.bg-olive { background:var(--olive-deep); color:var(--cream); }
+.bg-cream { background:var(--cream); color:var(--olive-deep); }
+
+.hi { color:var(--burn); }
+.hi-light { color:var(--burn-light); }
+
+/* ===== MARKS / SVG ===== */
+.mark { fill:none; }
+.mark path {
+  stroke:currentColor;
+  stroke-width:11;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.fwd path { stroke-width:13; }
+.c-burn { color:var(--burn); }
+.c-cream { color:var(--cream); }
+
+/* ===== HERO ===== */
+.hero {
+  min-height:100vh;
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:28px;
+  padding:60px 24px;
+  opacity:1;
+  transform:none;
+}
+.hero .logo-text {
+  font-family:var(--display);
+  font-size:clamp(56px,14vw,120px);
+  letter-spacing:0.04em;
+  line-height:0.82;
+  color:var(--cream);
+  direction:ltr;
+}
+.hero .sub {
+  font-family:var(--en);
+  font-weight:500;
+  letter-spacing:0.55em;
+  font-size:clamp(11px,3vw,16px);
+  color:var(--olive-light);
+  direction:ltr;
+  padding-inline-start:0.55em;
+  margin-top:-8px;
+}
+.hero .tag-ar {
+  font-family:var(--ar);
+  font-weight:700;
+  font-size:clamp(22px,5.5vw,36px);
+  color:var(--cream);
+  margin-top:16px;
+}
+.hero .tag-en {
+  font-family:var(--en);
+  font-weight:400;
+  font-size:clamp(13px,3.5vw,18px);
+  color:var(--olive-light);
+  direction:ltr;
+  margin-top:4px;
+}
+.hero .scrollhint {
+  font-family:var(--en);
+  font-size:11px;
+  letter-spacing:0.15em;
+  color:var(--olive-mid);
+  margin-top:40px;
+  direction:ltr;
+  animation:pulse 2s ease-in-out infinite;
+}
+
+.hero-mark path {
+  opacity:0;
+  animation:marchIn 0.55s cubic-bezier(0.2,0.7,0.3,1) both;
+}
+.hero-mark path:nth-child(1) { animation-delay:0.1s; }
+.hero-mark path:nth-child(2) { animation-delay:0.22s; }
+.hero-mark path:nth-child(3) { animation-delay:0.34s; }
+.hero-mark path:nth-child(4) { animation-delay:0.46s; }
+.hero-mark path:nth-child(5) { animation-delay:0.58s; }
+
+@keyframes marchIn {
+  from { opacity:0; transform:translateX(-20px); }
+  to { opacity:1; transform:translateX(0); }
+}
+@keyframes pulse {
+  0%,100% { opacity:0.4; }
+  50% { opacity:1; }
+}
+
+/* ===== PROMISE ===== */
+.eyebrow {
+  font-family:var(--en);
+  font-weight:600;
+  font-size:12px;
+  letter-spacing:0.28em;
+  text-transform:uppercase;
+  color:var(--burn);
+  direction:ltr;
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:28px;
+}
+.eyebrow::before {
+  content:"";
+  width:24px;
+  height:2px;
+  background:currentColor;
+}
+.promise-text {
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:clamp(26px,6.5vw,48px);
+  color:var(--cream);
+  line-height:1.3;
+  max-width:18ch;
+}
+.lead {
+  font-size:clamp(15px,4vw,18px);
+  line-height:1.7;
+  color:var(--olive-light);
+  margin-top:24px;
+}
+
+/* ===== LOGO SECTION ===== */
+.section-num {
+  font-family:var(--en);
+  font-weight:600;
+  font-size:11px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--burn-dark);
+  direction:ltr;
+}
+.section-title {
+  font-family:var(--display);
+  font-size:clamp(36px,9vw,64px);
+  letter-spacing:0.03em;
+  line-height:0.9;
+  direction:ltr;
+  margin:8px 0 16px;
+}
+.section-desc {
+  font-size:clamp(14px,3.8vw,17px);
+  line-height:1.6;
+  color:var(--olive-mid);
+  margin-bottom:32px;
+}
+.bg-olive .section-desc { color:var(--olive-light); }
+
+.logoboard {
+  background:var(--black);
+  border-radius:20px;
+  padding:40px 24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:24px;
+  margin-bottom:20px;
+}
+.logo-minis {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  width:100%;
+}
+.logo-mini {
+  aspect-ratio:1;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ===== COLOR SWATCHES ===== */
+.swatches {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-bottom:10px;
+}
+.swatch {
+  padding:18px 20px;
+  border-radius:14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-family:var(--en);
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:0.02em;
+}
+.swatch .hex {
+  font-size:11px;
+  opacity:0.7;
+  direction:ltr;
+}
+.row2 {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+  margin-bottom:20px;
+}
+.swatch.sm {
+  padding:14px 16px;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:4px;
+  min-height:80px;
+}
+.legend {
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-size:13px;
+  color:var(--olive-mid);
+  margin-top:16px;
+}
+.legend b { color:var(--burn-dark); }
+
+/* ===== TYPOGRAPHY ===== */
+.type-grid {
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.type-card {
+  background:rgba(255,255,255,0.06);
+  border-radius:16px;
+  padding:24px 20px;
+  overflow:hidden;
+}
+.type-card .role {
+  font-family:var(--en);
+  font-size:11px;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--olive-light);
+  margin-bottom:12px;
+  direction:ltr;
+}
+.type-card .big {
+  font-size:clamp(28px,7vw,42px);
+  line-height:1.15;
+  margin-bottom:10px;
+  overflow-wrap:break-word;
+}
+.type-card .meta {
+  font-family:var(--en);
+  font-size:11px;
+  color:var(--olive-mid);
+  direction:ltr;
+}
+
+/* ===== VOICE ===== */
+.voice-grid {
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.voice-col {
+  border-radius:16px;
+  padding:24px 20px;
+}
+.voice-col.yes {
+  background:var(--olive-deep);
+  border:1px solid var(--olive-dark);
+}
+.voice-col.no {
+  background:rgba(196,92,34,0.08);
+  border:1px solid rgba(196,92,34,0.15);
+}
+.voice-col h4 {
+  font-size:15px;
+  font-weight:700;
+  margin-bottom:14px;
+}
+.voice-col.yes h4 { color:var(--olive-light); }
+.voice-col.no h4 { color:var(--burn); }
+.voice-col ul {
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.voice-col li {
+  font-size:14px;
+  line-height:1.5;
+  padding-right:16px;
+  position:relative;
+}
+.voice-col.yes li::before {
+  content:"";
+  position:absolute;
+  right:0;
+  top:8px;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--olive-light);
+}
+.voice-col.no li::before {
+  content:"";
+  position:absolute;
+  right:0;
+  top:8px;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--burn);
+}
+.voice-col.yes li { color:var(--olive-pale); }
+.voice-col.no li { color:var(--olive-mid); }
+
+/* ===== STRATEGY ===== */
+.strategy-flow {
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  margin:24px 0;
+}
+.flow-step {
+  background:rgba(255,255,255,0.06);
+  border-radius:16px;
+  padding:20px;
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  border-right:3px solid var(--burn);
+}
+.flow-num {
+  font-family:var(--display);
+  font-size:32px;
+  color:var(--burn);
+  line-height:1;
+  direction:ltr;
+  min-width:30px;
+}
+.flow-step h4 {
+  font-size:16px;
+  font-weight:700;
+  color:var(--cream);
+  margin-bottom:4px;
+}
+.flow-step p {
+  font-size:13px;
+  color:var(--olive-light);
+  line-height:1.5;
+}
+
+.stat-highlight {
+  text-align:center;
+  padding:32px 20px;
+  margin:24px 0;
+  background:linear-gradient(135deg, var(--burn-dark), var(--burn));
+  border-radius:20px;
+}
+.stat-highlight .number {
+  font-family:var(--display);
+  font-size:clamp(48px,12vw,80px);
+  color:var(--cream);
+  line-height:1;
+  direction:ltr;
+}
+.stat-highlight .label {
+  font-size:14px;
+  color:rgba(255,255,255,0.85);
+  margin-top:8px;
+}
+
+.daily-output {
+  background:var(--olive-dark);
+  border-radius:16px;
+  padding:24px 20px;
+  text-align:center;
+  margin:16px 0;
+}
+.daily-output .big-num {
+  font-family:var(--display);
+  font-size:clamp(40px,10vw,64px);
+  color:var(--burn);
+  line-height:1;
+  direction:ltr;
+}
+.daily-output .desc {
+  font-size:14px;
+  color:var(--olive-light);
+  margin-top:8px;
+}
+
+/* ===== CTA / OFFER ===== */
+.offer-box {
+  background:var(--olive-dark);
+  border-radius:20px;
+  padding:32px 24px;
+  margin-top:24px;
+  border:1px solid var(--olive-mid);
+}
+.offer-box p {
+  font-size:clamp(15px,4vw,18px);
+  line-height:1.7;
+  color:var(--olive-pale);
+  margin-bottom:16px;
+}
+.offer-box .cta-text {
+  font-weight:700;
+  font-size:clamp(18px,5vw,24px);
+  color:var(--burn);
+  line-height:1.4;
+}
+
+/* ===== CLOSING ===== */
+.closing {
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+  padding:80px 24px;
+}
+.closing .big {
+  font-family:var(--display);
+  font-size:clamp(40px,10vw,72px);
+  letter-spacing:0.03em;
+  line-height:0.95;
+  color:var(--cream);
+  direction:ltr;
+}
+.closing .tag-ar {
+  font-family:var(--ar);
+  font-weight:700;
+  font-size:clamp(20px,5vw,30px);
+  color:var(--cream);
+}
+
+/* ===== CONTACT BUTTONS ===== */
+.contact-buttons {
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  padding:0 24px 40px;
+  max-width:400px;
+  margin:0 auto;
+  width:100%;
+  position:relative;
+}
+.contact-btn {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  padding:16px 24px;
+  border-radius:14px;
+  font-family:var(--ar);
+  font-weight:700;
+  font-size:16px;
+  color:#fff;
+  text-decoration:none;
+  transition:transform 0.2s ease, box-shadow 0.2s ease;
+  direction:ltr;
+}
+.contact-btn:active {
+  transform:scale(0.97);
+}
+.contact-btn svg {
+  width:22px;
+  height:22px;
+  flex-shrink:0;
+}
+.btn-email { background:#c45c22; }
+.btn-email:active { box-shadow:0 4px 20px rgba(196,92,34,0.4); }
+.btn-whatsapp { background:#8a9f55; }
+.btn-whatsapp:active { box-shadow:0 4px 20px rgba(138,159,85,0.4); }
+
+/* ===== FOOTER ===== */
+footer {
+  background:var(--black);
+  border-top:1px solid rgba(138,159,85,0.15);
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  text-align:center;
+}
+footer span {
+  font-family:var(--en);
+  font-size:11px;
+  letter-spacing:0.1em;
+  color:var(--olive-mid);
+  direction:ltr;
+}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.fade-up {
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible {
+  opacity:1;
+  transform:translateY(0);
+}
+.stagger-1 { transition-delay:0.1s; }
+.stagger-2 { transition-delay:0.2s; }
+.stagger-3 { transition-delay:0.3s; }
+.stagger-4 { transition-delay:0.4s; }
+.stagger-5 { transition-delay:0.5s; }
+
+.slide-right {
+  opacity:0;
+  transform:translateX(-30px);
+  transition:opacity 0.6s ease, transform 0.6s ease;
+}
+.slide-right.visible {
+  opacity:1;
+  transform:translateX(0);
+}
+
+.scale-in {
+  opacity:0;
+  transform:scale(0.9);
+  transition:opacity 0.5s ease, transform 0.5s ease;
+}
+.scale-in.visible {
+  opacity:1;
+  transform:scale(1);
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<section class="section bg-black hero">
+  <svg class="mark wide-mark hero-mark c-burn" width="260" viewBox="0 0 318 100" aria-label="Twenzer arrows">
+    <path d="M30 24 L56 50 L30 76"></path>
+    <path d="M88 24 L114 50 L88 76"></path>
+    <path d="M146 24 L172 50 L146 76"></path>
+    <path d="M204 24 L230 50 L204 76"></path>
+    <path d="M262 24 L288 50 L262 76"></path>
+  </svg>
+  <div>
+    <div class="logo-text">TWENZER<span class="hi">.</span></div>
+    <div class="sub">MEDIA</div>
+  </div>
+  <div>
+    <div class="tag-ar">نخلّيك <span class="hi-light">تُشاف</span></div>
+    <div class="tag-en">We make you visible</div>
+  </div>
+  <div class="scrollhint">Brand Identity · 2025 ↓</div>
+</section>
+
+<!-- ============ PROMISE ============ -->
+<section class="section bg-olive">
+  <div class="eyebrow fade-up">The promise · الرسالة</div>
+  <div class="promise-text fade-up stagger-1">
+    محتواك موجود — بس الناس <span class="hi-light">مش شايفاه.</span>
+  </div>
+  <p class="lead fade-up stagger-2">
+    بنوزّع محتوى رواد الأعمال وشركات البودكاست على السوشيال ميديا بدقّة وعلى نطاق واسع.
+    مفيش كلام فاضي — وصول حقيقي بس.
+  </p>
+</section>
+
+<!-- ============ LOGO ============ -->
+<section class="section bg-cream">
+  <div class="section-num fade-up">01 — IDENTITY</div>
+  <h2 class="section-title fade-up stagger-1">THE LOGO</h2>
+  <p class="section-desc fade-up stagger-2">الأسهم بتدفع المحتوى لقدّام، والناس بتبصّ ناحيته. لوجو اتجاهي بسيط، أوّل ما تشوفه تفتكره.</p>
+
+  <div class="logoboard scale-in">
+    <svg class="mark wide-mark c-burn" width="240" viewBox="0 0 318 100">
+      <path d="M30 24 L56 50 L30 76"></path><path d="M88 24 L114 50 L88 76"></path>
+      <path d="M146 24 L172 50 L146 76"></path><path d="M204 24 L230 50 L204 76"></path>
+      <path d="M262 24 L288 50 L262 76"></path>
+    </svg>
+    <div style="text-align:center; direction:ltr;">
+      <div style="font-family:var(--display); font-size:40px; letter-spacing:0.05em; color:var(--cream);">TWENZER<span class="hi">.</span></div>
+      <div style="font-family:var(--en); font-weight:500; font-size:11px; letter-spacing:0.6em; color:var(--olive-light); padding-inline-start:0.6em; margin-top:6px;">MEDIA</div>
+    </div>
+  </div>
+
+  <div class="logo-minis">
+    <div class="logo-mini fade-up stagger-1" style="background:var(--olive-deep);">
+      <svg class="mark fwd" style="color:var(--olive-pale);" width="48" viewBox="0 0 120 120"><path d="M30 34 L66 60 L30 86"></path><path d="M58 34 L94 60 L58 86"></path></svg>
+    </div>
+    <div class="logo-mini fade-up stagger-2" style="background:var(--olive-deep);">
+      <svg class="mark fwd c-burn" width="48" viewBox="0 0 120 120"><path d="M30 34 L66 60 L30 86"></path><path d="M58 34 L94 60 L58 86"></path></svg>
+    </div>
+    <div class="logo-mini fade-up stagger-3" style="background:var(--cream); border:1px solid rgba(42,48,32,0.1);">
+      <svg class="mark fwd" style="color:var(--olive-deep);" width="48" viewBox="0 0 120 120"><path d="M30 34 L66 60 L30 86"></path><path d="M58 34 L94 60 L58 86"></path></svg>
+    </div>
+    <div class="logo-mini fade-up stagger-4" style="background:var(--burn);">
+      <svg class="mark fwd" style="color:#fff;" width="48" viewBox="0 0 120 120"><path d="M30 34 L66 60 L30 86"></path><path d="M58 34 L94 60 L58 86"></path></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLOR ============ -->
+<section class="section bg-cream" style="padding-top:0;">
+  <div class="section-num fade-up">02 — PALETTE</div>
+  <h2 class="section-title fade-up stagger-1">COLOR</h2>
+  <p class="section-desc fade-up stagger-2">زيتي تقيل بيمسك الأساس، وبرتقالي محروق بيدّي الطاقة. كريمي وأسود للراحة والتباين.</p>
+
+  <div class="swatches">
+    <div class="swatch fade-up stagger-1" style="background:#2a3020; color:#f5f2ea;"><span>Olive Deep</span><span class="hex">#2a3020</span></div>
+    <div class="swatch fade-up stagger-2" style="background:#3d4a28; color:#f5f2ea;"><span>Olive Dark</span><span class="hex">#3d4a28</span></div>
+    <div class="swatch fade-up stagger-3" style="background:#5c6b35; color:#f5f2ea;"><span>Olive Mid</span><span class="hex">#5c6b35</span></div>
+    <div class="swatch fade-up stagger-4" style="background:#8a9f55; color:#1b2010;"><span>Olive Light</span><span class="hex">#8a9f55</span></div>
+    <div class="swatch fade-up stagger-5" style="background:#c8d4a0; color:#2a3020;"><span>Olive Pale</span><span class="hex">#c8d4a0</span></div>
+  </div>
+  <div class="row2">
+    <div class="swatch sm scale-in" style="background:#c45c22; color:#f5f2ea;"><span>Burn Dark</span><span class="hex">#c45c22</span></div>
+    <div class="swatch sm scale-in stagger-1" style="background:#d97035; color:#f5f2ea;"><span>Burn</span><span class="hex">#d97035</span></div>
+    <div class="swatch sm scale-in stagger-2" style="background:#e8905c; color:#3a1a0a;"><span>Burn Light</span><span class="hex">#e8905c</span></div>
+    <div class="swatch sm scale-in stagger-3" style="background:#f5f2ea; color:#2a3020; border:1px solid rgba(42,48,32,0.12);"><span>Cream</span><span class="hex">#f5f2ea</span></div>
+    <div class="swatch sm scale-in stagger-4" style="background:#111209; color:#f5f2ea;"><span>Black</span><span class="hex">#111209</span></div>
+  </div>
+  <div class="legend fade-up">
+    <span><b>70%</b> Olive — الأساس والثقل</span>
+    <span><b>20%</b> Burnt orange — الحياة والطاقة</span>
+    <span><b>10%</b> Neutrals — كريمي وأسود</span>
+  </div>
+</section>
+
+<!-- ============ TYPOGRAPHY ============ -->
+<section class="section bg-olive">
+  <div class="section-num fade-up" style="color:var(--burn);">03 — TYPE</div>
+  <h2 class="section-title fade-up stagger-1" style="color:var(--cream);">TYPOGRAPHY</h2>
+  <p class="section-desc fade-up stagger-2">أربع خطوط: واحد للّوجو، واحد للعناوين، واتنين للنصوص — عربي وإنجليزي.</p>
+
+  <div class="type-grid">
+    <div class="type-card slide-right">
+      <div class="role">Display · Bebas Neue</div>
+      <div class="big" style="font-family:var(--display); letter-spacing:0.03em; direction:ltr;">TWENZER.</div>
+      <div class="meta">Uppercase only · اللوجو والعناوين الكبيرة</div>
+    </div>
+    <div class="type-card slide-right stagger-1">
+      <div class="role">Headlines · Playfair Display</div>
+      <div class="big" style="font-family:var(--serif); font-style:italic; font-size:clamp(24px,6vw,36px); direction:ltr;">Make you visible</div>
+      <div class="meta">Regular · Bold · Italic · العناوين الرئيسية</div>
+    </div>
+    <div class="type-card slide-right stagger-2">
+      <div class="role">Body Arabic · Cairo</div>
+      <div class="big" style="font-family:var(--ar); font-weight:700;">نخلّيك تُشاف</div>
+      <div class="meta">Light · Regular · Bold · النصوص العربية</div>
+    </div>
+    <div class="type-card slide-right stagger-3">
+      <div class="role">Body English · DM Sans</div>
+      <div class="big" style="font-family:var(--en); font-weight:500; direction:ltr;">Reach, with intent.</div>
+      <div class="meta">Light · Regular · Medium · النصوص الإنجليزية</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VOICE ============ -->
+<section class="section bg-cream">
+  <div class="section-num fade-up">04 — VOICE</div>
+  <h2 class="section-title fade-up stagger-1">THE VOICE</h2>
+  <p class="section-desc fade-up stagger-2">واثق · مباشر · بيفهمك. جمل قصيرة، تبدأ بالنتيجة، مش بتسأل — بتقول.</p>
+
+  <div class="voice-grid">
+    <div class="voice-col yes fade-up">
+      <h4>قول كده ✓</h4>
+      <ul>
+        <li>محتواك موجود — بس الناس مش شايفاه.</li>
+        <li>إحنا بنوصّل الصوت الصح للناس الصح.</li>
+        <li>شغلنا إننا نخليك تُشاف.</li>
+        <li>نتائج حقيقية، مش وعود فاضية.</li>
+      </ul>
+    </div>
+    <div class="voice-col no fade-up stagger-1">
+      <h4>متقولش كده ✕</h4>
+      <ul>
+        <li>نحن نقدّم خدمات تسويقية متكاملة…</li>
+        <li>حلولنا المبتكرة ستضمن نجاحك.</li>
+        <li>نسعى للتميّز والريادة في مجالنا.</li>
+        <li>أي كلام فضفاض مالوش معنى.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STRATEGY (from Canva presentation) ============ -->
+<section class="section bg-olive">
+  <div class="section-num fade-up" style="color:var(--burn);">05 — STRATEGY</div>
+  <h2 class="section-title fade-up stagger-1" style="color:var(--cream);">CONTENT<br>DISTRIBUTION</h2>
+  <p class="section-desc fade-up stagger-2">سر اشهر حلقة بودكاست كان في توزيع المحتوى</p>
+
+  <div class="stat-highlight scale-in">
+    <div class="number">+158M</div>
+    <div class="label">مشاهدة — النتيجة</div>
+  </div>
+
+  <div class="strategy-flow">
+    <div class="flow-step fade-up">
+      <div class="flow-num">01</div>
+      <div>
+        <h4>تحميل المحتوى</h4>
+        <p>ناخد المحتوى الأساسي ونجهّزه للتوزيع</p>
+      </div>
+    </div>
+    <div class="flow-step fade-up stagger-1">
+      <div class="flow-num">02</div>
+      <div>
+        <h4>اهم اللقطات</h4>
+        <p>ناخد اهم اللقطات ونحوّلها لمحتوى مستقل</p>
+      </div>
+    </div>
+    <div class="flow-step fade-up stagger-2">
+      <div class="flow-num">03</div>
+      <div>
+        <h4>مونتاج احترافي</h4>
+        <p>تعملها مونتاج بجودة عالية تناسب كل منصة</p>
+      </div>
+    </div>
+    <div class="flow-step fade-up stagger-3">
+      <div class="flow-num">04</div>
+      <div>
+        <h4>حسابات فرعية</h4>
+        <p>نفتح حسابات فرعية ونبني تفاعل لمدة 7-14 يوم</p>
+      </div>
+    </div>
+    <div class="flow-step fade-up stagger-4">
+      <div class="flow-num">05</div>
+      <div>
+        <h4>نشر مكثف</h4>
+        <p>ننشرهم بشكل مكثف على كل المنصات</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="daily-output scale-in">
+    <div class="big-num">3-6</div>
+    <div class="desc">فيديوهات يوميًا</div>
+  </div>
+</section>
+
+<!-- ============ OFFER / CTA ============ -->
+<section class="section bg-cream">
+  <div class="section-num fade-up">06 — OUR SYSTEM</div>
+  <h2 class="section-title fade-up stagger-1" style="font-size:clamp(28px,7vw,48px);">WHY<br>TWENZER<span class="hi">.</span></h2>
+
+  <div class="offer-box fade-up stagger-2">
+    <p>احنا عارفين ان انتاج محتوى البودكاست بياخد منكم مجهود كبير جدًا، وصعب توفّرو وقت علشان تبنو سيستم يقدر يوزّع المحتوى صح.</p>
+    <p>فعلشان كده احنا بنقترح عليكم اننا نساعدكم بالسيستم بتاعنا الي بيدير عملية الانتاج من A-Z علشان نضمنلكم توفير الوقت وأفضل جودة.</p>
+    <div class="cta-text">ولو مهتمين تبقو أقوى بودكاست في الشرق الأوسط — تواصلو معانا دلوقتي</div>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section class="section bg-black closing">
+  <svg class="mark wide-mark c-burn fade-up" width="200" viewBox="0 0 318 100">
+    <path d="M30 24 L56 50 L30 76"></path>
+    <path d="M88 24 L114 50 L88 76"></path>
+    <path d="M146 24 L172 50 L146 76"></path>
+    <path d="M204 24 L230 50 L204 76"></path>
+    <path d="M262 24 L288 50 L262 76"></path>
+  </svg>
+  <div class="big fade-up stagger-1">YOUR AUDIENCE<br>IS <span class="hi">WAITING.</span></div>
+  <div class="tag-ar fade-up stagger-2" style="color:var(--cream);">جمهورك مستنّيك.</div>
+</section>
+
+<!-- ============ CONTACT BUTTONS ============ -->
+<div class="contact-buttons">
+  <a href="mailto:omar@twenzer.media" class="contact-btn btn-email fade-up">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+      <path d="M22 4L12 13L2 4"></path>
+    </svg>
+    omar@twenzer.media
+  </a>
+  <a href="https://wa.me/201050454132" class="contact-btn btn-whatsapp fade-up stagger-1" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    WhatsApp
+  </a>
+</div>
+
+<footer>
+  <span>TWENZER. MEDIA — Brand Identity v1.0</span>
+  <span>2025 · نخلّيك تُشاف</span>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, {
+  threshold: 0.12,
+  rootMargin: '0px 0px -40px 0px'
+});
+
+document.querySelectorAll('.section, .fade-up, .slide-right, .scale-in').forEach(el => {
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
