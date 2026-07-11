@@ -1,0 +1,96 @@
+/* TWENZER. MEDIA — Brand identity page styles */
+
+:root{
+  --olive-deep:#2a3020;
+  --olive-dark:#3d4a28;
+  --olive-mid:#5c6b35;
+  --olive-light:#8a9f55;
+  --olive-pale:#c8d4a0;
+  --burn-dark:#c45c22;
+  --burn:#d97035;
+  --burn-light:#e8905c;
+  --cream:#f5f2ea;
+  --black:#111209;
+
+  --display:"Bebas Neue", sans-serif;
+  --serif:"Playfair Display", serif;
+  --ar:"Cairo", sans-serif;
+  --en:"DM Sans", sans-serif;
+  --mono:"DM Sans", monospace;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  background:var(--cream);
+  color:var(--olive-deep);
+  font-family:var(--en);
+  -webkit-font-smoothing:antialiased;
+  line-height:1.5;
+  overflow-x:hidden;
+}
+::selection{ background:var(--burn); color:var(--cream); }
+img{ display:block; max-width:100%; }
+
+/* ---------- layout ---------- */
+.section{ padding:clamp(72px,11vw,150px) clamp(24px,6vw,90px); position:relative; }
+.wrap{ max-width:1240px; margin:0 auto; }
+.bg-black{ background:var(--black); color:var(--cream); }
+.bg-olive{ background:var(--olive-deep); color:var(--cream); }
+.bg-cream{ background:var(--cream); color:var(--olive-deep); }
+
+/* ---------- type helpers ---------- */
+.eyebrow{
+  font-family:var(--en); font-weight:600;
+  font-size:13px; letter-spacing:0.28em; text-transform:uppercase;
+  color:var(--burn); direction:ltr;
+  display:inline-flex; align-items:center; gap:14px;
+}
+.eyebrow::before{ content:""; width:30px; height:2px; background:currentColor; }
+.bg-cream .eyebrow{ color:var(--burn-dark); }
+
+.display{ font-family:var(--display); font-weight:400; letter-spacing:0.02em; line-height:0.9; }
+.kicker-ar{ font-family:var(--ar); font-weight:700; line-height:1.18; }
+.serif-it{ font-family:var(--serif); font-style:italic; font-weight:400; line-height:1.2; }
+.lead{ font-size:clamp(17px,1.7vw,21px); line-height:1.6; color:var(--olive-light); max-width:56ch; }
+.bg-cream .lead{ color:var(--olive-mid); }
+.hi{ color:var(--burn); }
+.hi-light{ color:var(--burn-light); }
+
+/* ---------- marks ---------- */
+.mark{ fill:none; }
+.mark path{ stroke:currentColor; stroke-width:11; stroke-linecap:round; stroke-linejoin:round; }
+.fwd path{ stroke-width:13; }
+.c-burn{ color:var(--burn); }
+.c-pale{ color:var(--olive-pale); }
+.c-cream{ color:var(--cream); }
+.c-deep{ color:var(--olive-deep); }
+.c-white{ color:#fff; }
+
+/* hero marching chevrons — always visible; animation only slides them in */
+.wide-mark path{ opacity:1; }
+@media (prefers-reduced-motion:no-preference){
+  .hero-mark path{ animation:march .55s cubic-bezier(.2,.7,.3,1) both; }
+  .hero-mark path:nth-child(1){ animation-delay:.05s; }
+  .hero-mark path:nth-child(2){ animation-delay:.16s; }
+  .hero-mark path:nth-child(3){ animation-delay:.27s; }
+  .hero-mark path:nth-child(4){ animation-delay:.38s; }
+  .hero-mark path:nth-child(5){ animation-delay:.49s; }
+}
+@keyframes march{ from{ transform:translateX(-16px); } to{ transform:translateX(0); } }
+
+/* ---------- section heading ---------- */
+.shead{ display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:clamp(40px,5vw,72px); }
+.shead h2{ font-family:var(--display); font-weight:400; font-size:clamp(40px,6vw,88px); letter-spacing:0.02em; line-height:0.92; }
+.shead .num{ font-family:var(--mono); font-size:13px; letter-spacing:0.2em; color:var(--burn); }
+
+/* ---------- placeholder ---------- */
+.ph{ background:
+  repeating-linear-gradient(135deg, rgba(245,242,234,.10) 0 10px, rgba(245,242,234,.03) 10px 20px),
+  var(--olive-dark);
+  display:flex; align-items:center; justify-content:center; }
+.ph span{ font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--olive-pale); background:rgba(17,18,9,.45); padding:5px 11px; border-radius:30px; }
+
+footer{ background:var(--black); color:var(--olive-light); padding:30px 40px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  font-family:var(--mono); font-size:12px; letter-spacing:0.08em; }
