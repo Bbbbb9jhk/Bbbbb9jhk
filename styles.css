@@ -53,29 +53,18 @@
 }
 /* poster fallback colour behind the video while it loads */
 .hero-video{ background:var(--olive-deep); }
-/* readability overlay */
+/* light edge gradients only — the video itself is the hero, keep it clear */
 .hero-video::after{
   content:""; position:absolute; inset:0; z-index:-1;
   background:
-    radial-gradient(120% 90% at 50% 40%, rgba(17,18,9,.30), rgba(17,18,9,.72)),
-    linear-gradient(to bottom, rgba(42,48,32,.35), rgba(17,18,9,.65));
+    linear-gradient(to bottom, rgba(17,18,9,.45) 0%, rgba(17,18,9,0) 22%),
+    linear-gradient(to top, rgba(17,18,9,.5) 0%, rgba(17,18,9,0) 26%);
 }
-.hero-inner{ display:flex; flex-direction:column; align-items:center; gap:26px; max-width:900px; }
-.hero-video .eyebrow{ color:var(--burn-light); }
-.hero-video .wm{
-  font-family:var(--display); font-size:clamp(56px,11vw,150px); letter-spacing:0.05em;
-  line-height:0.82; color:var(--cream); direction:ltr;
+/* the booking button sits near the bottom, above the scroll hint */
+.hero-inner{
+  position:absolute; bottom:96px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; z-index:2;
 }
-.hero-video .wm .dot{ color:var(--burn); }
-.hero-video .tag-ar{
-  font-family:var(--ar); font-weight:700; font-size:clamp(20px,3.2vw,36px);
-  color:var(--cream); max-width:22ch;
-}
-.hero-video .tag-en{
-  font-family:var(--en); letter-spacing:0.22em; text-transform:uppercase;
-  font-size:clamp(11px,1.4vw,14px); color:var(--olive-pale); direction:ltr;
-}
-.hero-video .cta-row{ margin-top:10px; display:flex; gap:16px; flex-wrap:wrap; justify-content:center; }
 
 /* scroll hint */
 .scrollhint{
